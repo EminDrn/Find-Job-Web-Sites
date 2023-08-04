@@ -1,0 +1,845 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IsBulmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Basvuru">
+          <Key>
+            <PropertyRef Name="basvuruId" />
+          </Key>
+          <Property Name="basvuruId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="ilanId" Type="int" Nullable="false" />
+          <Property Name="CVdosyaPath" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="favori">
+          <Key>
+            <PropertyRef Name="favoriId" />
+          </Key>
+          <Property Name="favoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="ilanId" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="date" />
+        </EntityType>
+        <EntityType Name="Ilan">
+          <Key>
+            <PropertyRef Name="ilanId" />
+          </Key>
+          <Property Name="ilanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isVerenId" Type="int" Nullable="false" />
+          <Property Name="ilanAdi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ilanSehir" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ilanCalismaBicimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ilanDepertman" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ilanBasvuruSayisi" Type="int" />
+          <Property Name="isKategoriId" Type="int" Nullable="false" />
+          <Property Name="IlanEklenmeTarihi" Type="date" />
+          <Property Name="ilanCalismaZamani" Type="nvarchar" MaxLength="50" />
+          <Property Name="PozisyonSeviyeId" Type="int" />
+          <Property Name="ilanTanitimId" Type="int" />
+        </EntityType>
+        <EntityType Name="IlanPozisyonSeviye">
+          <Key>
+            <PropertyRef Name="SeviyeId" />
+          </Key>
+          <Property Name="SeviyeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PozisyonSeviyeAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IlanTanitim">
+          <Key>
+            <PropertyRef Name="ilanTanitimId" />
+          </Key>
+          <Property Name="ilanTanitimId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ilanOzet" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IsKategori">
+          <Key>
+            <PropertyRef Name="isKategoriId" />
+          </Key>
+          <Property Name="isKategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isKategoriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IsVerenKayit">
+          <Key>
+            <PropertyRef Name="isVerenId" />
+          </Key>
+          <Property Name="isVerenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isVerenTelNo" Type="int" Nullable="false" />
+          <Property Name="isVerenMail" Type="nvarchar" MaxLength="100" />
+          <Property Name="isVerenSirketAdi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="isVerenIl" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isVerenIlce" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isVerenVergiNo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="isVerenPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="kullaniciSoyadi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sehir" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefon" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="dogumTarihi" Type="date" Nullable="false" />
+          <Property Name="sifre" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KullaniciOzet">
+          <Key>
+            <PropertyRef Name="kullaniciOzetID" />
+          </Key>
+          <Property Name="kullaniciOzetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="ozetBilgi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yetenek">
+          <Key>
+            <PropertyRef Name="yetenekID" />
+          </Key>
+          <Property Name="yetenekID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yetenekAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IsBulma.dbo.v_IlanlarByIsVerenId' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_IlanlarByIsVerenId">
+          <Key>
+            <PropertyRef Name="ilanId" />
+            <PropertyRef Name="ilanAdi" />
+            <PropertyRef Name="isVerenSirketAdi" />
+            <PropertyRef Name="isKategoriId" />
+            <PropertyRef Name="ilanSehir" />
+            <PropertyRef Name="ilanCalismaBicimi" />
+            <PropertyRef Name="ilanOzet" />
+          </Key>
+          <Property Name="ilanId" Type="int" Nullable="false" />
+          <Property Name="ilanAdi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="isVerenSirketAdi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="isKategoriId" Type="int" Nullable="false" />
+          <Property Name="PozisyonSeviyeId" Type="int" />
+          <Property Name="IlanEklenmeTarihi" Type="date" />
+          <Property Name="ilanBasvuruSayisi" Type="int" />
+          <Property Name="ilanSehir" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ilanCalismaBicimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ilanOzet" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Basvuru__ilanId__45F365D3">
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="1" />
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilan">
+              <PropertyRef Name="ilanId" />
+            </Principal>
+            <Dependent Role="Basvuru">
+              <PropertyRef Name="ilanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Basvuru__Kullani__44FF419A">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Basvuru">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__favori__ilanId__412EB0B6">
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="1" />
+          <End Role="favori" Type="Self.favori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilan">
+              <PropertyRef Name="ilanId" />
+            </Principal>
+            <Dependent Role="favori">
+              <PropertyRef Name="ilanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__favori__Kullanic__403A8C7D">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="favori" Type="Self.favori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="favori">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ilan__ilanTaniti__72C60C4A">
+          <End Role="IlanTanitim" Type="Self.IlanTanitim" Multiplicity="0..1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IlanTanitim">
+              <PropertyRef Name="ilanTanitimId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="ilanTanitimId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ilan__isKategori__46E78A0C">
+          <End Role="IsKategori" Type="Self.IsKategori" Multiplicity="1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IsKategori">
+              <PropertyRef Name="isKategoriId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="isKategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ilan__isVerenId__33D4B598">
+          <End Role="IsVerenKayit" Type="Self.IsVerenKayit" Multiplicity="1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IsVerenKayit">
+              <PropertyRef Name="isVerenId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="isVerenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ilan__PozisyonSe__6FE99F9F">
+          <End Role="IlanPozisyonSeviye" Type="Self.IlanPozisyonSeviye" Multiplicity="0..1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IlanPozisyonSeviye">
+              <PropertyRef Name="SeviyeId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="PozisyonSeviyeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IsVerenKa__RoleI__05D8E0BE">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="IsVerenKayit" Type="Self.IsVerenKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="IsVerenKayit">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__Kulla__2E1BDC42">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="KullaniciOzet" Type="Self.KullaniciOzet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="KullaniciOzet">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__RoleI__03F0984C">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IsBulmaModelStoreContainer">
+          <EntitySet Name="Basvuru" EntityType="Self.Basvuru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="favori" EntityType="Self.favori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ilan" EntityType="Self.Ilan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IlanPozisyonSeviye" EntityType="Self.IlanPozisyonSeviye" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IlanTanitim" EntityType="Self.IlanTanitim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IsKategori" EntityType="Self.IsKategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IsVerenKayit" EntityType="Self.IsVerenKayit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KullaniciOzet" EntityType="Self.KullaniciOzet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yetenek" EntityType="Self.Yetenek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_IlanlarByIsVerenId" EntityType="Self.v_IlanlarByIsVerenId" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_IlanlarByIsVerenId].[ilanId] AS [ilanId], 
+    [v_IlanlarByIsVerenId].[ilanAdi] AS [ilanAdi], 
+    [v_IlanlarByIsVerenId].[isVerenSirketAdi] AS [isVerenSirketAdi], 
+    [v_IlanlarByIsVerenId].[isKategoriId] AS [isKategoriId], 
+    [v_IlanlarByIsVerenId].[PozisyonSeviyeId] AS [PozisyonSeviyeId], 
+    [v_IlanlarByIsVerenId].[IlanEklenmeTarihi] AS [IlanEklenmeTarihi], 
+    [v_IlanlarByIsVerenId].[ilanBasvuruSayisi] AS [ilanBasvuruSayisi], 
+    [v_IlanlarByIsVerenId].[ilanSehir] AS [ilanSehir], 
+    [v_IlanlarByIsVerenId].[ilanCalismaBicimi] AS [ilanCalismaBicimi], 
+    [v_IlanlarByIsVerenId].[ilanOzet] AS [ilanOzet]
+    FROM [dbo].[v_IlanlarByIsVerenId] AS [v_IlanlarByIsVerenId]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Basvuru__ilanId__45F365D3" Association="Self.FK__Basvuru__ilanId__45F365D3">
+            <End Role="Ilan" EntitySet="Ilan" />
+            <End Role="Basvuru" EntitySet="Basvuru" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Basvuru__Kullani__44FF419A" Association="Self.FK__Basvuru__Kullani__44FF419A">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Basvuru" EntitySet="Basvuru" />
+          </AssociationSet>
+          <AssociationSet Name="FK__favori__ilanId__412EB0B6" Association="Self.FK__favori__ilanId__412EB0B6">
+            <End Role="Ilan" EntitySet="Ilan" />
+            <End Role="favori" EntitySet="favori" />
+          </AssociationSet>
+          <AssociationSet Name="FK__favori__Kullanic__403A8C7D" Association="Self.FK__favori__Kullanic__403A8C7D">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="favori" EntitySet="favori" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ilan__ilanTaniti__72C60C4A" Association="Self.FK__Ilan__ilanTaniti__72C60C4A">
+            <End Role="IlanTanitim" EntitySet="IlanTanitim" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ilan__isKategori__46E78A0C" Association="Self.FK__Ilan__isKategori__46E78A0C">
+            <End Role="IsKategori" EntitySet="IsKategori" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ilan__isVerenId__33D4B598" Association="Self.FK__Ilan__isVerenId__33D4B598">
+            <End Role="IsVerenKayit" EntitySet="IsVerenKayit" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ilan__PozisyonSe__6FE99F9F" Association="Self.FK__Ilan__PozisyonSe__6FE99F9F">
+            <End Role="IlanPozisyonSeviye" EntitySet="IlanPozisyonSeviye" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IsVerenKa__RoleI__05D8E0BE" Association="Self.FK__IsVerenKa__RoleI__05D8E0BE">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="IsVerenKayit" EntitySet="IsVerenKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__Kulla__2E1BDC42" Association="Self.FK__Kullanici__Kulla__2E1BDC42">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="KullaniciOzet" EntitySet="KullaniciOzet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__RoleI__03F0984C" Association="Self.FK__Kullanici__RoleI__03F0984C">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IsBulmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Basvuru">
+          <Key>
+            <PropertyRef Name="basvuruId" />
+          </Key>
+          <Property Name="basvuruId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="ilanId" Type="Int32" Nullable="false" />
+          <Property Name="CVdosyaPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ilan" Relationship="Self.FK__Basvuru__ilanId__45F365D3" FromRole="Basvuru" ToRole="Ilan" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK__Basvuru__Kullani__44FF419A" FromRole="Basvuru" ToRole="Kullanici" />
+        </EntityType>
+        <EntityType Name="favori">
+          <Key>
+            <PropertyRef Name="favoriId" />
+          </Key>
+          <Property Name="favoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="ilanId" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Ilan" Relationship="Self.FK__favori__ilanId__412EB0B6" FromRole="favori" ToRole="Ilan" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK__favori__Kullanic__403A8C7D" FromRole="favori" ToRole="Kullanici" />
+        </EntityType>
+        <EntityType Name="Ilan">
+          <Key>
+            <PropertyRef Name="ilanId" />
+          </Key>
+          <Property Name="ilanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isVerenId" Type="Int32" Nullable="false" />
+          <Property Name="ilanAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ilanSehir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ilanCalismaBicimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ilanDepertman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ilanBasvuruSayisi" Type="Int32" />
+          <Property Name="isKategoriId" Type="Int32" Nullable="false" />
+          <Property Name="IlanEklenmeTarihi" Type="DateTime" Precision="0" />
+          <Property Name="ilanCalismaZamani" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PozisyonSeviyeId" Type="Int32" />
+          <Property Name="ilanTanitimId" Type="Int32" />
+          <NavigationProperty Name="Basvuru" Relationship="Self.FK__Basvuru__ilanId__45F365D3" FromRole="Ilan" ToRole="Basvuru" />
+          <NavigationProperty Name="favori" Relationship="Self.FK__favori__ilanId__412EB0B6" FromRole="Ilan" ToRole="favori" />
+          <NavigationProperty Name="IlanTanitim" Relationship="Self.FK__Ilan__ilanTaniti__72C60C4A" FromRole="Ilan" ToRole="IlanTanitim" />
+          <NavigationProperty Name="IsKategori" Relationship="Self.FK__Ilan__isKategori__46E78A0C" FromRole="Ilan" ToRole="IsKategori" />
+          <NavigationProperty Name="IsVerenKayit" Relationship="Self.FK__Ilan__isVerenId__33D4B598" FromRole="Ilan" ToRole="IsVerenKayit" />
+          <NavigationProperty Name="IlanPozisyonSeviye" Relationship="Self.FK__Ilan__PozisyonSe__6FE99F9F" FromRole="Ilan" ToRole="IlanPozisyonSeviye" />
+        </EntityType>
+        <EntityType Name="IlanPozisyonSeviye">
+          <Key>
+            <PropertyRef Name="SeviyeId" />
+          </Key>
+          <Property Name="SeviyeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PozisyonSeviyeAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ilan" Relationship="Self.FK__Ilan__PozisyonSe__6FE99F9F" FromRole="IlanPozisyonSeviye" ToRole="Ilan" />
+        </EntityType>
+        <EntityType Name="IlanTanitim">
+          <Key>
+            <PropertyRef Name="ilanTanitimId" />
+          </Key>
+          <Property Name="ilanTanitimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ilanOzet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ilan" Relationship="Self.FK__Ilan__ilanTaniti__72C60C4A" FromRole="IlanTanitim" ToRole="Ilan" />
+        </EntityType>
+        <EntityType Name="IsKategori">
+          <Key>
+            <PropertyRef Name="isKategoriId" />
+          </Key>
+          <Property Name="isKategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isKategoriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ilan" Relationship="Self.FK__Ilan__isKategori__46E78A0C" FromRole="IsKategori" ToRole="Ilan" />
+        </EntityType>
+        <EntityType Name="IsVerenKayit">
+          <Key>
+            <PropertyRef Name="isVerenId" />
+          </Key>
+          <Property Name="isVerenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isVerenTelNo" Type="Int32" Nullable="false" />
+          <Property Name="isVerenMail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isVerenSirketAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isVerenIl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isVerenIlce" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isVerenVergiNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isVerenPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ilan" Relationship="Self.FK__Ilan__isVerenId__33D4B598" FromRole="IsVerenKayit" ToRole="Ilan" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="IsBulmaModel.FK__IsVerenKa__RoleI__05D8E0BE" FromRole="IsVerenKayit" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kullaniciSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sehir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dogumTarihi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="sifre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Basvuru" Relationship="Self.FK__Basvuru__Kullani__44FF419A" FromRole="Kullanici" ToRole="Basvuru" />
+          <NavigationProperty Name="favori" Relationship="Self.FK__favori__Kullanic__403A8C7D" FromRole="Kullanici" ToRole="favori" />
+          <NavigationProperty Name="KullaniciOzet" Relationship="Self.FK__Kullanici__Kulla__2E1BDC42" FromRole="Kullanici" ToRole="KullaniciOzet" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="IsBulmaModel.FK__Kullanici__RoleI__03F0984C" FromRole="Kullanici" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="KullaniciOzet">
+          <Key>
+            <PropertyRef Name="kullaniciOzetID" />
+          </Key>
+          <Property Name="kullaniciOzetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="ozetBilgi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK__Kullanici__Kulla__2E1BDC42" FromRole="KullaniciOzet" ToRole="Kullanici" />
+        </EntityType>
+        <EntityType Name="Yetenek">
+          <Key>
+            <PropertyRef Name="yetenekID" />
+          </Key>
+          <Property Name="yetenekID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yetenekAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_IlanlarByIsVerenId">
+          <Key>
+            <PropertyRef Name="ilanId" />
+            <PropertyRef Name="ilanAdi" />
+            <PropertyRef Name="isVerenSirketAdi" />
+            <PropertyRef Name="isKategoriId" />
+            <PropertyRef Name="ilanSehir" />
+            <PropertyRef Name="ilanCalismaBicimi" />
+            <PropertyRef Name="ilanOzet" />
+          </Key>
+          <Property Name="ilanId" Type="Int32" Nullable="false" />
+          <Property Name="ilanAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isVerenSirketAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isKategoriId" Type="Int32" Nullable="false" />
+          <Property Name="PozisyonSeviyeId" Type="Int32" />
+          <Property Name="IlanEklenmeTarihi" Type="DateTime" Precision="0" />
+          <Property Name="ilanBasvuruSayisi" Type="Int32" />
+          <Property Name="ilanSehir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ilanCalismaBicimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ilanOzet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Basvuru__ilanId__45F365D3">
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="1" />
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilan">
+              <PropertyRef Name="ilanId" />
+            </Principal>
+            <Dependent Role="Basvuru">
+              <PropertyRef Name="ilanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Basvuru__Kullani__44FF419A">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Basvuru">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__favori__ilanId__412EB0B6">
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="1" />
+          <End Role="favori" Type="Self.favori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilan">
+              <PropertyRef Name="ilanId" />
+            </Principal>
+            <Dependent Role="favori">
+              <PropertyRef Name="ilanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__favori__Kullanic__403A8C7D">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="favori" Type="Self.favori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="favori">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ilan__ilanTaniti__72C60C4A">
+          <End Role="IlanTanitim" Type="Self.IlanTanitim" Multiplicity="0..1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IlanTanitim">
+              <PropertyRef Name="ilanTanitimId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="ilanTanitimId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ilan__isKategori__46E78A0C">
+          <End Role="IsKategori" Type="Self.IsKategori" Multiplicity="1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IsKategori">
+              <PropertyRef Name="isKategoriId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="isKategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ilan__isVerenId__33D4B598">
+          <End Role="IsVerenKayit" Type="Self.IsVerenKayit" Multiplicity="1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IsVerenKayit">
+              <PropertyRef Name="isVerenId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="isVerenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ilan__PozisyonSe__6FE99F9F">
+          <End Role="IlanPozisyonSeviye" Type="Self.IlanPozisyonSeviye" Multiplicity="0..1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IlanPozisyonSeviye">
+              <PropertyRef Name="SeviyeId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="PozisyonSeviyeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__Kulla__2E1BDC42">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="KullaniciOzet" Type="Self.KullaniciOzet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="KullaniciOzet">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IsBulmaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Basvuru" EntityType="Self.Basvuru" />
+          <EntitySet Name="favori" EntityType="Self.favori" />
+          <EntitySet Name="Ilan" EntityType="Self.Ilan" />
+          <EntitySet Name="IlanPozisyonSeviye" EntityType="Self.IlanPozisyonSeviye" />
+          <EntitySet Name="IlanTanitim" EntityType="Self.IlanTanitim" />
+          <EntitySet Name="IsKategori" EntityType="Self.IsKategori" />
+          <EntitySet Name="IsVerenKayit" EntityType="Self.IsVerenKayit" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" />
+          <EntitySet Name="KullaniciOzet" EntityType="Self.KullaniciOzet" />
+          <EntitySet Name="Yetenek" EntityType="Self.Yetenek" />
+          <EntitySet Name="v_IlanlarByIsVerenId" EntityType="Self.v_IlanlarByIsVerenId" />
+          <AssociationSet Name="FK__Basvuru__ilanId__45F365D3" Association="Self.FK__Basvuru__ilanId__45F365D3">
+            <End Role="Ilan" EntitySet="Ilan" />
+            <End Role="Basvuru" EntitySet="Basvuru" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Basvuru__Kullani__44FF419A" Association="Self.FK__Basvuru__Kullani__44FF419A">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Basvuru" EntitySet="Basvuru" />
+          </AssociationSet>
+          <AssociationSet Name="FK__favori__ilanId__412EB0B6" Association="Self.FK__favori__ilanId__412EB0B6">
+            <End Role="Ilan" EntitySet="Ilan" />
+            <End Role="favori" EntitySet="favori" />
+          </AssociationSet>
+          <AssociationSet Name="FK__favori__Kullanic__403A8C7D" Association="Self.FK__favori__Kullanic__403A8C7D">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="favori" EntitySet="favori" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ilan__ilanTaniti__72C60C4A" Association="Self.FK__Ilan__ilanTaniti__72C60C4A">
+            <End Role="IlanTanitim" EntitySet="IlanTanitim" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ilan__isKategori__46E78A0C" Association="Self.FK__Ilan__isKategori__46E78A0C">
+            <End Role="IsKategori" EntitySet="IsKategori" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ilan__isVerenId__33D4B598" Association="Self.FK__Ilan__isVerenId__33D4B598">
+            <End Role="IsVerenKayit" EntitySet="IsVerenKayit" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ilan__PozisyonSe__6FE99F9F" Association="Self.FK__Ilan__PozisyonSe__6FE99F9F">
+            <End Role="IlanPozisyonSeviye" EntitySet="IlanPozisyonSeviye" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__Kulla__2E1BDC42" Association="Self.FK__Kullanici__Kulla__2E1BDC42">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="KullaniciOzet" EntitySet="KullaniciOzet" />
+          </AssociationSet>
+          <EntitySet Name="Roles" EntityType="IsBulmaModel.Roles" />
+          <AssociationSet Name="FK__IsVerenKa__RoleI__05D8E0BE" Association="IsBulmaModel.FK__IsVerenKa__RoleI__05D8E0BE">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="IsVerenKayit" EntitySet="IsVerenKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__RoleI__03F0984C" Association="IsBulmaModel.FK__Kullanici__RoleI__03F0984C">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IsVerenKayit" Relationship="IsBulmaModel.FK__IsVerenKa__RoleI__05D8E0BE" FromRole="Roles" ToRole="IsVerenKayit" />
+          <NavigationProperty Name="Kullanici" Relationship="IsBulmaModel.FK__Kullanici__RoleI__03F0984C" FromRole="Roles" ToRole="Kullanici" />
+        </EntityType>
+        <Association Name="FK__IsVerenKa__RoleI__05D8E0BE">
+          <End Type="IsBulmaModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="IsBulmaModel.IsVerenKayit" Role="IsVerenKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="IsVerenKayit">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__RoleI__03F0984C">
+          <End Type="IsBulmaModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="IsBulmaModel.Kullanici" Role="Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IsBulmaModelStoreContainer" CdmEntityContainer="IsBulmaEntities">
+          <EntitySetMapping Name="Basvuru">
+            <EntityTypeMapping TypeName="IsBulmaModel.Basvuru">
+              <MappingFragment StoreEntitySet="Basvuru">
+                <ScalarProperty Name="basvuruId" ColumnName="basvuruId" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="ilanId" ColumnName="ilanId" />
+                <ScalarProperty Name="CVdosyaPath" ColumnName="CVdosyaPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="favori">
+            <EntityTypeMapping TypeName="IsBulmaModel.favori">
+              <MappingFragment StoreEntitySet="favori">
+                <ScalarProperty Name="favoriId" ColumnName="favoriId" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="ilanId" ColumnName="ilanId" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ilan">
+            <EntityTypeMapping TypeName="IsBulmaModel.Ilan">
+              <MappingFragment StoreEntitySet="Ilan">
+                <ScalarProperty Name="ilanId" ColumnName="ilanId" />
+                <ScalarProperty Name="isVerenId" ColumnName="isVerenId" />
+                <ScalarProperty Name="ilanAdi" ColumnName="ilanAdi" />
+                <ScalarProperty Name="ilanSehir" ColumnName="ilanSehir" />
+                <ScalarProperty Name="ilanCalismaBicimi" ColumnName="ilanCalismaBicimi" />
+                <ScalarProperty Name="ilanDepertman" ColumnName="ilanDepertman" />
+                <ScalarProperty Name="ilanBasvuruSayisi" ColumnName="ilanBasvuruSayisi" />
+                <ScalarProperty Name="isKategoriId" ColumnName="isKategoriId" />
+                <ScalarProperty Name="IlanEklenmeTarihi" ColumnName="IlanEklenmeTarihi" />
+                <ScalarProperty Name="ilanCalismaZamani" ColumnName="ilanCalismaZamani" />
+                <ScalarProperty Name="PozisyonSeviyeId" ColumnName="PozisyonSeviyeId" />
+                <ScalarProperty Name="ilanTanitimId" ColumnName="ilanTanitimId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IlanPozisyonSeviye">
+            <EntityTypeMapping TypeName="IsBulmaModel.IlanPozisyonSeviye">
+              <MappingFragment StoreEntitySet="IlanPozisyonSeviye">
+                <ScalarProperty Name="SeviyeId" ColumnName="SeviyeId" />
+                <ScalarProperty Name="PozisyonSeviyeAdi" ColumnName="PozisyonSeviyeAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IlanTanitim">
+            <EntityTypeMapping TypeName="IsBulmaModel.IlanTanitim">
+              <MappingFragment StoreEntitySet="IlanTanitim">
+                <ScalarProperty Name="ilanTanitimId" ColumnName="ilanTanitimId" />
+                <ScalarProperty Name="ilanOzet" ColumnName="ilanOzet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IsKategori">
+            <EntityTypeMapping TypeName="IsBulmaModel.IsKategori">
+              <MappingFragment StoreEntitySet="IsKategori">
+                <ScalarProperty Name="isKategoriId" ColumnName="isKategoriId" />
+                <ScalarProperty Name="isKategoriAdi" ColumnName="isKategoriAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IsVerenKayit">
+            <EntityTypeMapping TypeName="IsBulmaModel.IsVerenKayit">
+              <MappingFragment StoreEntitySet="IsVerenKayit">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="isVerenId" ColumnName="isVerenId" />
+                <ScalarProperty Name="isVerenTelNo" ColumnName="isVerenTelNo" />
+                <ScalarProperty Name="isVerenMail" ColumnName="isVerenMail" />
+                <ScalarProperty Name="isVerenSirketAdi" ColumnName="isVerenSirketAdi" />
+                <ScalarProperty Name="isVerenIl" ColumnName="isVerenIl" />
+                <ScalarProperty Name="isVerenIlce" ColumnName="isVerenIlce" />
+                <ScalarProperty Name="isVerenVergiNo" ColumnName="isVerenVergiNo" />
+                <ScalarProperty Name="isVerenPassword" ColumnName="isVerenPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanici">
+            <EntityTypeMapping TypeName="IsBulmaModel.Kullanici">
+              <MappingFragment StoreEntitySet="Kullanici">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="kullaniciSoyadi" ColumnName="kullaniciSoyadi" />
+                <ScalarProperty Name="sehir" ColumnName="sehir" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="dogumTarihi" ColumnName="dogumTarihi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciOzet">
+            <EntityTypeMapping TypeName="IsBulmaModel.KullaniciOzet">
+              <MappingFragment StoreEntitySet="KullaniciOzet">
+                <ScalarProperty Name="kullaniciOzetID" ColumnName="kullaniciOzetID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="ozetBilgi" ColumnName="ozetBilgi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yetenek">
+            <EntityTypeMapping TypeName="IsBulmaModel.Yetenek">
+              <MappingFragment StoreEntitySet="Yetenek">
+                <ScalarProperty Name="yetenekID" ColumnName="yetenekID" />
+                <ScalarProperty Name="yetenekAdi" ColumnName="yetenekAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_IlanlarByIsVerenId">
+            <EntityTypeMapping TypeName="IsBulmaModel.v_IlanlarByIsVerenId">
+              <MappingFragment StoreEntitySet="v_IlanlarByIsVerenId">
+                <ScalarProperty Name="ilanId" ColumnName="ilanId" />
+                <ScalarProperty Name="ilanAdi" ColumnName="ilanAdi" />
+                <ScalarProperty Name="isVerenSirketAdi" ColumnName="isVerenSirketAdi" />
+                <ScalarProperty Name="isKategoriId" ColumnName="isKategoriId" />
+                <ScalarProperty Name="PozisyonSeviyeId" ColumnName="PozisyonSeviyeId" />
+                <ScalarProperty Name="IlanEklenmeTarihi" ColumnName="IlanEklenmeTarihi" />
+                <ScalarProperty Name="ilanBasvuruSayisi" ColumnName="ilanBasvuruSayisi" />
+                <ScalarProperty Name="ilanSehir" ColumnName="ilanSehir" />
+                <ScalarProperty Name="ilanCalismaBicimi" ColumnName="ilanCalismaBicimi" />
+                <ScalarProperty Name="ilanOzet" ColumnName="ilanOzet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="IsBulmaModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

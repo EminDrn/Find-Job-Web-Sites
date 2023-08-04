@@ -1,0 +1,72 @@
+﻿@using IsBulmaProject.Models
+@model List<v_IlanlarByIsVerenId>
+<div class="container mt-5">
+    <div class="row gx-5">
+        <div class="col-lg-3">
+            <div class="list-group">
+                <a href="/Ilanlar/Index" class="list-group-item list-group-item-action" aria-current="true">
+                    All Categories
+                </a>
+                @foreach (var item in ViewBag.Kategori)
+                {
+                    <a href="/Ilanlar/Index/@item.isKategoriId" class="list-group-item list-group-item-action @(ViewBag.SelectedCategory == item.isKategoriId.ToString()?"active":"")">@item.isKategoriAdi</a>
+                }
+
+                <!-- Daha fazla kategori ekleyebilirsiniz -->
+            </div>
+
+            <!-- Pozisyon Seviye Filtreleme -->
+            <div class="list-group mt-4">
+                <a href="/Ilanlar/Index" class="list-group-item list-group-item-action" aria-current="true">
+                    All Position Levels
+                </a>
+                @foreach (var item in ViewBag.KategoriBySeviye as List<IlanPozisyonSeviye>)
+                {
+                    <a href="/Ilanlar/Index/@item.SeviyeId" class="list-group-item list-group-item-action @(ViewBag.SelcetedCategoryBySeviye == item.SeviyeId.ToString()?"active":"")">@item.PozisyonSeviyeAdi</a>
+                }
+
+                <!-- Daha fazla kategori ekleyebilirsiniz -->
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <!-- Yukarıda .row divinin içine eklediğimiz container divi -->
+            <div class="row gx-5">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 mb-5">
+                        <div class="card h-70 shadow border-0">
+                            <div class="card-body p-4">
+                                <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
+                                <a class="text-decoration-none link-dark stretched-link" href="@Url.Action("Details", "Ilanlar", new { id = item.ilanId })">
+
+                                    <h5 class="card-title mb-3">
+                                        @if (item.ilanAdi.Length <= 35)
+                                        {
+                                            @item.ilanAdi
+                                        }
+                                        else
+                                        {
+                                            @item.ilanAdi.Substring(0, 35) @Html.Raw("...")
+                                        }
+                                    </h5>
+                                </a>
+                                <p class="card-text mb-0">@item.ilanSehir -- @item.ilanCalismaBicimi</p>
+                            </div>
+                            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                <div class="d-flex align-items-end justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                        <div class="small">
+                                            <div class="fw-bold company-name">@item.isVerenSirketAdi</div>
+                                            <div class="text-muted">@item.IlanEklenmeTarihi &middot; @item.ilanBasvuruSayisi +</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
