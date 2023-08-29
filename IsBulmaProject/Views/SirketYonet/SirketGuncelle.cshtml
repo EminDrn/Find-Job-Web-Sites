@@ -1,0 +1,41 @@
+﻿@using IsBulmaProject.Models
+@model IsVerenKayit
+
+<div class="container">
+    <h2 class="my-4">Şirket  Kayıt Formu</h2>
+    <form action="/SirketYonet/SirketGuncelle" method="post">
+        <div class="mb-3">
+            <input type="hidden" class="form-control" id="isVerenId" name="isVerenId" value="@Model.isVerenId" required>
+
+            <label for="isVerenSirketAdi" class="form-label">Şirket Adı</label>
+            <input type="text" class="form-control" id="isVerenSirketAdi" name="isVerenSirketAdi" value="@Model.isVerenSirketAdi"required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenMail" class="form-label">Şirket Mail Adresi</label>
+            <input type="text" class="form-control" id="isVerenMail" name="isVerenMail" value="@Model.isVerenMail" required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenIl" class="form-label">Şirketin Bulunduğu İl</label>
+            <input type="text" class="form-control" id="isVerenIl" name="isVerenIl" value="@Model.isVerenIl" required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenIlce" class="form-label">Şirketin Bulunduğu İlçe</label>
+            <input type="text" class="form-control" id="isVerenIlce" name="isVerenIlce" value="@Model.isVerenIlce" required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenTelNo" class="form-label">Telefon</label>
+            <input type="tel" class="form-control" id="isVerenTelNo" name="isVerenTelNo" value="@Model.isVerenTelNo" required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenVergiNo" class="form-label">Vergi Numarası</label>
+            <input type="number" class="form-control" id="isVerenVergiNo" name="isVerenVergiNo" value="@Model.isVerenVergiNo" required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenPassword" class="form-label">Şifre</label>
+            <input type="password" class="form-control" id="isVerenPassword" name="isVerenPassword" value="@Model.isVerenPassword" required>
+        </div>
+        <input type="hidden" class="form-control" id="RoleId" name="RoleId" value="3" required>
+
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+    </form>
+</div>

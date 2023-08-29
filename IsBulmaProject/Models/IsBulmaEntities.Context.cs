@@ -29,13 +29,12 @@ namespace IsBulmaProject.Models
         public virtual DbSet<favori> favori { get; set; }
         public virtual DbSet<Ilan> Ilan { get; set; }
         public virtual DbSet<IlanPozisyonSeviye> IlanPozisyonSeviye { get; set; }
-        public virtual DbSet<IlanTanitim> IlanTanitim { get; set; }
         public virtual DbSet<IsKategori> IsKategori { get; set; }
         public virtual DbSet<IsVerenKayit> IsVerenKayit { get; set; }
         public virtual DbSet<Kullanici> Kullanici { get; set; }
-        public virtual DbSet<KullaniciOzet> KullaniciOzet { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Yetenek> Yetenek { get; set; }
         public virtual DbSet<v_IlanlarByIsVerenId> v_IlanlarByIsVerenId { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<v_KullaniciBasvurular> v_KullaniciBasvurular { get; set; }
     }
 }

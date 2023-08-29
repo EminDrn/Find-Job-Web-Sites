@@ -1,40 +1,17 @@
 ﻿@using IsBulmaProject.Models
 @model List<v_IlanlarByIsVerenId>
-<div class="container mt-5">
-    <div class="row gx-5">
-        <div class="col-lg-3">
-            <div class="list-group">
-                <a href="/Ilanlar/Index" class="list-group-item list-group-item-action" aria-current="true">
-                    All Categories
-                </a>
-                @foreach (var item in ViewBag.Kategori)
-                {
-                    <a href="/Ilanlar/Index/@item.isKategoriId" class="list-group-item list-group-item-action @(ViewBag.SelectedCategory == item.isKategoriId.ToString()?"active":"")">@item.isKategoriAdi</a>
-                }
-
-                <!-- Daha fazla kategori ekleyebilirsiniz -->
-            </div>
-
-            <!-- Pozisyon Seviye Filtreleme -->
-            <div class="list-group mt-4">
-                <a href="/Ilanlar/Index" class="list-group-item list-group-item-action" aria-current="true">
-                    All Position Levels
-                </a>
-                @foreach (var item in ViewBag.KategoriBySeviye as List<IlanPozisyonSeviye>)
-                {
-                    <a href="/Ilanlar/Index/@item.SeviyeId" class="list-group-item list-group-item-action @(ViewBag.SelcetedCategoryBySeviye == item.SeviyeId.ToString()?"active":"")">@item.PozisyonSeviyeAdi</a>
-                }
-
-                <!-- Daha fazla kategori ekleyebilirsiniz -->
-            </div>
-        </div>
-        <div class="col-lg-9">
+@if (Model.Count !=0)
+{
+    <div class="container mt-5">
+        <div class="col-lg-9 ">
             <!-- Yukarıda .row divinin içine eklediğimiz container divi -->
             <div class="row gx-5">
-                @foreach (var item in Model)
+                @foreach (var item in ViewBag.Ilanlar)
                 {
-                    <div class="col-lg-4 mb-5">
+                    <div class="col-lg-4 mb-4">
+                        <!-- Dikkat: mb-4 olarak değiştirildi -->
                         <div class="card h-100 shadow border-0">
+                            <!-- Dikkat: h-70 h-100 olarak değiştirildi -->
                             <div class="card-body p-4">
                                 <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
                                 <a class="text-decoration-none link-dark stretched-link" href="@Url.Action("Details", "Ilanlar", new { id = item.ilanId })">
@@ -66,7 +43,18 @@
                         </div>
                     </div>
                 }
+
+
+
             </div>
         </div>
     </div>
+}
+else
+{
+<div class="text-center mt-5">
+    <h3>Kaydedilenlerinizde herhangi bir ürün bulunmamaktadır.</h3>
 </div>
+}
+
+       

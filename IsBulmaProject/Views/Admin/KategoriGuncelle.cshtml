@@ -1,0 +1,18 @@
+﻿@using IsBulmaProject.Models
+@model IsKategori
+
+<div class="container mt-5">
+    <form action="/Admin/KategoriGuncelle" method="post" class="row">
+        <input type="hidden" name="isKategoriId" value="@Model.isKategoriId" /> <!-- Gizli input alanı -->
+        <div class="form-group col-md-6">
+            <label for="isKategoriAdi">Kategori Adı</label>
+            <input type="text" class="form-control" id="isKategoriAdi" name="isKategoriAdi" value="@Model.isKategoriAdi" required>
+        </div>
+        <div class="col-md-6">
+            <!-- Boş bölge bırakmak için kullanılan bir div -->
+        </div>
+        <div class="col-md-12 mt-5">
+            <button type="submit" class="btn btn-dark">Kategori Güncelle</button>
+        </div>
+    </form>
+</div>

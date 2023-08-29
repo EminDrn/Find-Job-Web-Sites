@@ -17,7 +17,6 @@ namespace IsBulmaProject.Models
         public int favoriId { get; set; }
         public int KullaniciID { get; set; }
         public int ilanId { get; set; }
-        public Nullable<System.DateTime> Tarih { get; set; }
     
         public virtual Ilan Ilan { get; set; }
         public virtual Kullanici Kullanici { get; set; }

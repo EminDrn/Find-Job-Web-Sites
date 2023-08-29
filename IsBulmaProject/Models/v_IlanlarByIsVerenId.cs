@@ -14,6 +14,7 @@ namespace IsBulmaProject.Models
     
     public partial class v_IlanlarByIsVerenId
     {
+        public int isVerenId { get; set; }
         public int ilanId { get; set; }
         public string ilanAdi { get; set; }
         public string isVerenSirketAdi { get; set; }
@@ -23,6 +24,6 @@ namespace IsBulmaProject.Models
         public Nullable<int> ilanBasvuruSayisi { get; set; }
         public string ilanSehir { get; set; }
         public string ilanCalismaBicimi { get; set; }
-        public string ilanOzet { get; set; }
+        public string IlanTanitim { get; set; }
     }
 }

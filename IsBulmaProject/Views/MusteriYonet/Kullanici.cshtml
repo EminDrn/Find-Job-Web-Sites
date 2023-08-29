@@ -1,0 +1,79 @@
+﻿
+@using IsBulmaProject.Models
+@model List<Kullanici>
+
+
+<div class="container mt-3">
+    <h2>Kullanici Yönet</h2>
+    <a href="/MusteriYonet/KullaniciEkle">
+        <button type="button" class="btn btn-outline-dark  mb-4">Kullanici Ekle</button>
+    </a>
+    <table class="table table-striped">
+        <thead>
+
+            <tr>
+                <th>Kullanici Adı</th>
+                <th>Kullanici Soyadi</th>
+                <th>Yaşadığı Sehir</th>
+                <th>Mail Adresi</th>
+                <th>Telefon</th>
+                <th>Sifre</th>
+                <th>Sil</th>
+                <th>Guncelle</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Kullanici as List<Kullanici>)
+            {
+                <tr>
+                    <td>@item.KullaniciAdi</td>
+                    <td>@item.kullaniciSoyadi </td>
+                    <td>@item.sehir </td>
+                    <td>@item.Mail </td>
+                    <td>@item.telefon </td>
+                    <td>@item.sifre </td>
+                    <td><a href="#" data-kId="@item.KullaniciID" class="btn btn-outline-danger me-2 kSil">Sil</a></td>
+                    <td><a href="/MusteriYonet/KullaniciGuncelle/@item.KullaniciID" class="btn btn-outline-primary"> Güncelle </a> </td>
+
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="~/Shared/js/jquery-1.11.1.min.js"></script>
+
+    <script>
+        $(".kSil").click(
+            function ()
+            {
+                var sonuc = confirm("Kullanici silinsin mi?");
+                if (sonuc) {
+                    var kid = $(this).attr("data-kId");
+                    //alert(kid);
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/MusteriYonet/KullaniciSil/" + kid,
+                            success: function () {
+                                alert("Kullanici silindi");
+                                window.location.replace("/MusteriYonet/Kullanici");
+                            },
+                            error: function () {
+                                alert("Kullanici silinemedi");
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Silme İptal Edildi");
+                }
+            }
+        );
+    </script>
+}

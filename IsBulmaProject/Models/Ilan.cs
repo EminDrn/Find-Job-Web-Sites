@@ -32,13 +32,12 @@ namespace IsBulmaProject.Models
         public Nullable<System.DateTime> IlanEklenmeTarihi { get; set; }
         public string ilanCalismaZamani { get; set; }
         public Nullable<int> PozisyonSeviyeId { get; set; }
-        public Nullable<int> ilanTanitimId { get; set; }
+        public string IlanTanitim { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Basvuru> Basvuru { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<favori> favori { get; set; }
-        public virtual IlanTanitim IlanTanitim { get; set; }
         public virtual IsKategori IsKategori { get; set; }
         public virtual IsVerenKayit IsVerenKayit { get; set; }
         public virtual IlanPozisyonSeviye IlanPozisyonSeviye { get; set; }

@@ -1,0 +1,79 @@
+﻿
+@using IsBulmaProject.Models
+@model List<IsVerenKayit>
+
+
+<div class="container mt-3">
+    <h2>Şirket Yönet</h2>
+    <a href="/SirketYonet/SirketEkle">
+        <button type="button" class="btn btn-outline-dark  mb-4">İş Veren Ekle</button>
+    </a>
+    <table class="table table-striped">
+        <thead>
+
+            <tr>
+                <th>İş Veren Şirket Adı</th>
+                <th>İş Veren Mail</th>
+                <th>İl</th>
+                <th>İlçe</th>
+                <th>Telefon</th>
+                <th>İş Veren Vergi No</th>
+                <th>Sil</th>
+                <th>Guncelle</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Sirket as List<IsVerenKayit>)
+            {
+                <tr>
+                    <td>@item.isVerenSirketAdi</td>
+                    <td>@item.isVerenMail </td>
+                    <td>@item.isVerenIl </td>
+                    <td>@item.isVerenIlce </td>
+                    <td>@item.isVerenTelNo </td>
+                    <td>@item.isVerenVergiNo </td>
+                    <td><a href="#" data-SId="@item.isVerenId" class="btn btn-outline-danger me-2 SSil">Sil</a></td>
+                    <td><a href="/SirketYonet/SirketGuncelle/@item.isVerenId" class="btn btn-outline-primary"> Güncelle </a> </td>
+
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="~/Shared/js/jquery-1.11.1.min.js"></script>
+
+    <script>
+        $(".SSil").click(
+            function ()
+            {
+                var sonuc = confirm("Kullanici silinsin mi?");
+                if (sonuc) {
+                    var kid = $(this).attr("data-SId");
+                    //alert(kid);
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/SirketYonet/SirketSil/" + kid,
+                            success: function () {
+                                alert("Kullanici silindi");
+                                window.location.replace("/SirketYonet/Sirket");
+                            },
+                            error: function () {
+                                alert("Kullanici silinemedi");
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Silme İptal Edildi");
+                }
+            }
+        );
+    </script>
+}

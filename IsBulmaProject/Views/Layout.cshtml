@@ -26,29 +26,30 @@
                         <li class="nav-item"><a class="nav-link" href="/Ilanlar/Index">İş İlanları</a></li>
                         @if (User.IsInRole("1"))
                         {
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Kategori Yönet</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Kullanici Yönet</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Şirket Yönet</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">İlan Ver</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Admin/Kategori">Kategori Yönet</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/MusteriYonet/Kullanici">Kullanıcı Yönet</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/SirketYonet/Sirket">Şirket Yönet</a></li>
+
 
                         }
                         @if (User.IsInRole("3"))
                         {
 
-                            <li class="nav-item"><a class="nav-link" href="blog-post.html">İlanlarım</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/SirketIlanlar/Ilanlar">İlanlarım</a></li>
                         }
 
-                        <li class="nav-item"><a class="nav-link" href="about.html">Hakkmızda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Anasayfa/Hakkımızda">Hakkımızda</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">@HttpContext.Current.User.Identity.Name</a>
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">@Session["kullaniciAdi"]</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                                    <li><a class="dropdown-item" href="portfolio-overview.html">Porfil</a></li>
-                                    @if (User.IsInRole("2")) {
-                                    <li><a class="dropdown-item" href="portfolio-overview.html">Favorilerim</a></li>
+                                    <li><a class="dropdown-item" href="/MusteriYonet/KullaniciDetails/@Session["kullaniciID"]">Porfil</a></li>
+                                    @if (User.IsInRole("2"))
+                                    {
+                                        <li><a class="dropdown-item" href="/MusteriYonet/Favori">Kaydedilenler</a></li>
                                     }
-                                    
+
 
                                     <li><a class="dropdown-item" href="/Güvenlik/LogOut">Çıkış Yap</a></li>
                                 </ul>
@@ -79,7 +80,7 @@
                     </ul>
 
 
-</div>      
+                </div>
             </div>
         </nav>
         <!-- Header-->

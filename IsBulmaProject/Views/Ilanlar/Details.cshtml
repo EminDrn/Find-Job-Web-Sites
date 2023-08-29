@@ -10,10 +10,27 @@
                     <span class="badge bg-info">@Model.isVerenSirketAdi</span>
                 </div>
                 <div class="d-flex">
-                    <a href="#" class="btn btn-outline-primary me-2">Başvur</a>
-                    <button class="btn btn-outline-primary">
-                        <i class="bi bi-heart"></i>
-                    </button>
+
+                    @if (User.IsInRole("2"))
+                    {
+                        <a href="/Ilanlar/Basvur/@Model.ilanId" class="btn btn-outline-primary me-2">Başvur</a>
+
+                        <a href="/Ilanlar/FavoriEkle/@Model.ilanId" class="btn btn-outline-primary me-2">Kaydet</a>
+                    }
+
+                    @if (User.IsInRole("3") && User.Identity.Name == Model.isVerenSirketAdi)
+                    {
+                        <a href="/SirketIlanlar/IlanGuncelle/@Model.ilanId" class="btn btn-outline-primary me-2">Güncelle</a>
+                        <a href="#" data-ilanId="@Model.ilanId" class="btn btn-outline-primary me-2 ilanSil">Sil</a>
+                    }
+
+
+                    @if (User.IsInRole("1"))
+                    {
+                        <a href="/SirketIlanlar/IlanGuncelle/@Model.ilanId" class="btn btn-outline-primary me-2">Güncelle</a>
+                        <a href="#" data-ilanId="@Model.ilanId" class="btn btn-outline-primary me-2 ilanSil">Sil</a>
+                    }
+
                 </div>
             </div>
             <hr>
@@ -35,7 +52,7 @@
                         <table class="table table-striped">
                             <tbody>
                                 <tr>
-                                    <td>@Model.ilanOzet</td>
+                                    <td>@Model.IlanTanitim</td>
                                 </tr>
                                 <!-- Diğer ürün detayları satırları -->
                             </tbody>
@@ -46,3 +63,72 @@
         </div>
     </div>
 </div>
+@if(User.IsInRole("3") && User.Identity.Name == Model.isVerenSirketAdi)
+            {
+<div class="container mt-3">
+    <h2>İlana Başvuranlar</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Adı</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Cv Dosyası</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in ViewBag.Kullanicilar as List<IsBulmaProject.Models.v_KullaniciBasvurular>)
+            {
+                <tr>
+                    <td>@item.KullaniciAdi</td>
+                    <td>@item.kullaniciSoyadi</td>
+                    <td>@item.Mail</td>
+                    <td>
+                        <a href="~/Dosyalar/@item.CVdosyaPath" target="_blank">@item.CVdosyaPath</a>
+                    </td>
+                    <td>
+                        <a href="/MusteriYonet/KullaniciDetails/@item.KullaniciID" class="btn btn-outline-primary me-2">Profil</a>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+            }
+
+@section scripts{
+    <script src="~/Shared/js/jquery-1.11.1.min.js"></script>
+
+    <script>
+        $(".ilanSil").click(
+            function () {
+                var sonuc = confirm("İlan silinsin mi?");
+                if (sonuc) {
+                    var kid = $(this).attr("data-ilanId");
+                    //alert(kid);
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/SirketIlanlar/IlanSil/" + kid,
+                            success: function () {
+                                alert("İlan silindi");
+                                window.location.replace("/SirketIlanlar/Ilanlar");
+                            },
+                            error: function () {
+                                alert("İlan silinemedi");
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Silme İptal Edildi");
+                }
+            }
+        );
+    </script>
+}

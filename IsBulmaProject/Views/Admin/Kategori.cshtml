@@ -1,0 +1,70 @@
+﻿@using IsBulmaProject.Models
+@model List<IsKategori>
+
+
+<div class="container mt-3">
+    <h2>Kategorileri Yönet</h2>
+    <a href="/Admin/KategoriEkle">
+        <button type="button" class="btn btn-outline-dark  mb-4">Kategori Ekle</button>
+    </a>
+    <table class="table table-striped">
+        <thead>
+
+            <tr>
+                <th>Kategori Id</th>
+                <th>Kategori Adı</th>
+                <th>Sil</th>
+                <th>Güncelle</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Kategori as List<IsKategori>)
+            {
+                <tr>
+                    <td>@item.isKategoriId</td>
+                    <td>@item.isKategoriAdi </td>
+                    <td><a href="#" data-ktgId="@item.isKategoriId" class="btn btn-outline-danger me-2 ktgSil">Sil</a></td>
+                    <td><a href="/Admin/KategoriGuncelle/@item.isKategoriId" class="btn btn-outline-primary"> Güncelle </a> </td>
+
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="~/Shared/js/jquery-1.11.1.min.js"></script>
+
+    <script>
+        $(".ktgSil").click(
+            function ()
+            {
+                var sonuc = confirm("Kategori silinsin mi?");
+                if (sonuc) {
+                    var kid = $(this).attr("data-ktgId");
+                    //alert(kid);
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/Admin/KategoriSil/" + kid,
+                            success: function () {
+                                alert("Kategori silindi");
+                                window.location.replace("/Admin/Kategori");
+                            },
+                            error: function () {
+                                alert("Kategori silinemedi");
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Silme İptal Edildi");
+                }
+            }
+        );
+    </script>
+}

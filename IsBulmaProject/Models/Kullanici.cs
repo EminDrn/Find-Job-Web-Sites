@@ -19,7 +19,6 @@ namespace IsBulmaProject.Models
         {
             this.Basvuru = new HashSet<Basvuru>();
             this.favori = new HashSet<favori>();
-            this.KullaniciOzet = new HashSet<KullaniciOzet>();
         }
     
         public int KullaniciID { get; set; }
@@ -31,13 +30,12 @@ namespace IsBulmaProject.Models
         public System.DateTime dogumTarihi { get; set; }
         public string sifre { get; set; }
         public int RoleID { get; set; }
+        public string kullaniciOzet { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Basvuru> Basvuru { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<favori> favori { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KullaniciOzet> KullaniciOzet { get; set; }
         public virtual Roles Roles { get; set; }
     }
 }

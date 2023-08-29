@@ -32,7 +32,11 @@ namespace IsBulmaProject.Controllers
             }
             else
             {
-                FormsAuthentication.SetAuthCookie(u.KullaniciAdi, false);
+                FormsAuthentication.SetAuthCookie(u.Mail, false);
+                Session["kullaniciAdi"] = u.KullaniciAdi;
+                Session["kullaniciID"] = u.KullaniciID;
+
+                //Session["kullaniciDT"] = u.dogumTarihi;
                 return RedirectToAction("Index" , "Anasayfa");
             }
 

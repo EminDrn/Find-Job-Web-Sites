@@ -12,12 +12,13 @@ namespace IsBulmaProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class KullaniciOzet
+    public partial class v_KullaniciBasvurular
     {
-        public int kullaniciOzetID { get; set; }
         public int KullaniciID { get; set; }
-        public string ozetBilgi { get; set; }
-    
-        public virtual Kullanici Kullanici { get; set; }
+        public string KullaniciAdi { get; set; }
+        public string kullaniciSoyadi { get; set; }
+        public string Mail { get; set; }
+        public string CVdosyaPath { get; set; }
+        public int ilanId { get; set; }
     }
 }

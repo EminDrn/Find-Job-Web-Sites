@@ -44,7 +44,7 @@ namespace IsBulmaProject.Security
             var userroles = new List<string>();
             
             // kullanıcının rollerini kullanici tablosundan al
-            Kullanici kullanici = model.Kullanici.FirstOrDefault(u => u.KullaniciAdi == username);
+            Kullanici kullanici = model.Kullanici.FirstOrDefault(u => u.Mail == username);
             if (kullanici != null)
             {
                 string role = kullanici.RoleID.ToString();

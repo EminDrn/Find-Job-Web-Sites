@@ -1,0 +1,38 @@
+﻿
+
+<div class="container">
+    <h2 class="my-4">Şirket  Kayıt Formu</h2>
+    <form action="/SirketYonet/SirketEkle" method="post">
+        <div class="mb-3">
+            <label for="isVerenSirketAdi" class="form-label">Şirket Adı</label>
+            <input type="text" class="form-control" id="isVerenSirketAdi" name="isVerenSirketAdi" required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenMail" class="form-label">Şirket Mail Adresi</label>
+            <input type="text" class="form-control" id="isVerenMail" name="isVerenMail" required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenIl" class="form-label">Şirketin Bulunduğu İl</label>
+            <input type="text" class="form-control" id="isVerenIl" name="isVerenIl" required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenIlce" class="form-label">Şirketin Bulunduğu İlçe</label>
+            <input type="text" class="form-control" id="isVerenIlce" name="isVerenIlce" required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenTelNo" class="form-label">Telefon</label>
+            <input type="tel" class="form-control" id="isVerenTelNo" name="isVerenTelNo" required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenVergiNo" class="form-label">Vergi Numarası</label>
+            <input type="number" class="form-control" id="isVerenVergiNo" name="isVerenVergiNo" required>
+        </div>
+        <div class="mb-3">
+            <label for="isVerenPassword" class="form-label">Şifre</label>
+            <input type="password" class="form-control" id="isVerenPassword" name="isVerenPassword" required>
+        </div>
+        <input type="hidden" class="form-control" id="RoleId" name="RoleId"value="3" required>
+
+        <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+    </form>
+</div>

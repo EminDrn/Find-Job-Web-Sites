@@ -1,0 +1,22 @@
+﻿@using IsBulmaProject.Models
+@model IsKategori
+
+<input type="text" class="form-control" id="isKategoriAdi" name="isKategoriAdi" required>
+
+
+<div class="container mt-5">
+    <form action="/Admin/KategoriEkle" method="post" class="row">
+        <div class="form-group col-md-6">
+            <label for="isKategoriAdi">Kategori Adı</label>
+            <input type="text" class="form-control" id="isKategoriAdi" name="isKategoriAdi" required>
+
+
+        </div>
+        <div class="col-md-6">
+            <!-- Boş bölge bırakmak için kullanılan bir div -->
+        </div>
+        <div class="col-md-12 mt-5">
+            <button type="submit" class="btn btn-dark">Kategori Ekle</button>
+        </div>
+    </form>
+</div>

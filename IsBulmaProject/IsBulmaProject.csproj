@@ -111,15 +111,20 @@
     <Content Include="Shared\assets\favicon.ico" />
     <Content Include="Shared\assets\not-found.svg" />
     <Content Include="Shared\css\styles.css" />
+    <Content Include="Shared\js\jquery-1.11.1.min.js" />
     <Content Include="Shared\js\scripts.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AnasayfaController.cs" />
     <Compile Include="Controllers\GüvenlikController.cs" />
     <Compile Include="Controllers\GüvenlikSirketController.cs" />
     <Compile Include="Controllers\IlanlarController.cs" />
+    <Compile Include="Controllers\MusteriYonetController.cs" />
+    <Compile Include="Controllers\SirketIlanlarController.cs" />
+    <Compile Include="Controllers\SirketYonetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -133,9 +138,6 @@
       <DependentUpon>IsBulmaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IlanPozisyonSeviye.cs">
-      <DependentUpon>IsBulmaEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\IlanTanitim.cs">
       <DependentUpon>IsBulmaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IsBulmaEntities.Context.cs">
@@ -162,19 +164,20 @@
     <Compile Include="Models\Kullanici.cs">
       <DependentUpon>IsBulmaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\KullaniciOzet.cs">
-      <DependentUpon>IsBulmaEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>IsBulmaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\v_IlanlarByIsVerenId.cs">
       <DependentUpon>IsBulmaEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\v_KullaniciBasvurular.cs">
+      <DependentUpon>IsBulmaEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Yetenek.cs">
       <DependentUpon>IsBulmaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\MyAuthorization.cs" />
     <Compile Include="Security\MyRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +200,22 @@
     <Content Include="Views\GüvenlikSirket\Login.cshtml" />
     <Content Include="Views\GüvenlikSirket\Register.cshtml" />
     <Content Include="Views\GüvenlikSirket\Hata.cshtml" />
+    <Content Include="Views\SirketIlanlar\Ilanlar.cshtml" />
+    <Content Include="Views\SirketIlanlar\IlanEkle.cshtml" />
+    <Content Include="Views\SirketIlanlar\IlanGuncelle.cshtml" />
+    <Content Include="Views\Admin\Kategori.cshtml" />
+    <Content Include="Views\Admin\KategoriEkle.cshtml" />
+    <Content Include="Views\Admin\KategoriGuncelle.cshtml" />
+    <Content Include="Views\MusteriYonet\Kullanici.cshtml" />
+    <Content Include="Views\MusteriYonet\KullaniciEkle.cshtml" />
+    <Content Include="Views\MusteriYonet\KullaniciGuncelle.cshtml" />
+    <Content Include="Views\SirketYonet\Sirket.cshtml" />
+    <Content Include="Views\SirketYonet\SirketEkle.cshtml" />
+    <Content Include="Views\SirketYonet\SirketGuncelle.cshtml" />
+    <Content Include="Views\MusteriYonet\KullaniciDetails.cshtml" />
+    <Content Include="Views\MusteriYonet\Favori.cshtml" />
+    <Content Include="Views\Ilanlar\Basvur.cshtml" />
+    <Content Include="Views\Anasayfa\Hakkımızda.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -206,6 +225,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Dosyalar\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

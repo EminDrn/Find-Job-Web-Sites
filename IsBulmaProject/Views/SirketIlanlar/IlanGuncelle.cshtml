@@ -1,0 +1,99 @@
+﻿@using IsBulmaProject.Models
+@model Ilan
+
+
+<div class="container">
+    <h2 class="my-4"> Ürün Ekleme Formu</h2>
+    <form action="/SirketIlanlar/IlanGuncelle/@Model.ilanId" method="post">
+        <div class="mb-3">
+            <label for="isVerenId" class="form-label">İşveren ID</label>
+
+            <input type="hidden" class="form-control" id="isVerenId" name="isVerenId" value="@Model.isVerenId" required>
+        </div>
+        <input type="hidden" id="ilanId" name="ilanId" value="@Model.ilanId" />
+        <div class="mb-3">
+            <label for="ilanAdi" class="form-label">İlan Başlığı</label>
+            <input type="text" class="form-control" id="ilanAdi" name="ilanAdi" value="@Model.ilanAdi" required>
+        </div>
+        <div class="mb-3">
+
+            <label for="ilanSehir" class="form-label">İşin Bulunduğu Şehir</label>
+
+            <input type="text" class="form-control" id="ilanSehir" name="ilanSehir" value="@Model.ilanSehir" required>
+        </div>
+        <div class="mb-3">
+            <label for="ilanCalismaBicimi" class="form-label">İşin Çalışma Biçimi</label>
+            <select class="form-control" id="ilanCalismaBicimi" name="ilanCalismaBicimi" value="@Model.ilanCalismaBicimi" required>
+                <option value="">Çalışma Biçimi Seçin</option>
+                @*@if (Model != null)
+                {
+
+
+                }*@
+                <option value="@Model.ilanCalismaBicimi" selected>@Model.ilanCalismaBicimi</option>
+                <option value="Uzaktan">Uzaktan</option>
+                <option value="Hibrit">Hibrit</option>
+                <option value="İş Yerinde">İş Yerinde</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="ilanDepertman" class="form-label">İlanı Veren Departman</label>
+            <input type="text" class="form-control" id="ilanDepertman" name="ilanDepertman" value="@Model.ilanDepertman" required>
+
+
+        </div>
+        <div class="mb-3">
+            <input type="hidden" class="form-control" id="ilanBasvuruSayisi" name="ilanBasvuruSayisi" value="@Model.ilanBasvuruSayisi" required>
+
+
+        </div>
+        <div class="mb-3">
+            <input type="hidden" class="form-control" id="ilanEklenmeTarihi" name="ilanEklenmeTarihi" value="@Model.IlanEklenmeTarihi" required>
+
+        </div>
+        <div class="mb-3">
+            <label for="isKategoriId" class="form-label">Kategori</label>
+            <select class="form-control" id="isKategoriId" name="isKategoriId" value="@Model.isKategoriId" required>
+
+                <option value="">Kategori Seçin</option>
+                @foreach (IsKategori kategori in ViewBag.Kategoriler)
+                {
+                    <option value="@kategori.isKategoriId">@kategori.isKategoriAdi</option>
+                }
+                <option value="@Model.isKategoriId" selected>@Model.IsKategori.isKategoriAdi</option>
+
+            </select>
+
+        </div>
+        <div class="mb-3">
+            <label for="ilanCalismaZamani" class="form-label">Çalışma Zamanı</label>
+            <select class="form-control" id="ilanCalismaZamani" name="ilanCalismaZamani" required>
+                <option value="">Çalışma Zamanı Seçin</option>
+                <option value="Tam Zamanlı">Tam Zamanlı</option>
+                <option value="Part Time">Part Time</option>
+                <option value="@Model.ilanCalismaZamani" selected>@Model.ilanCalismaZamani</option>
+
+            </select>
+
+        </div>
+        <div class="mb-3">
+            <label for="PozisyonSeviyeId" class="form-label">Pozisyon Seviyesi</label>
+            <select class="form-control" id="PozisyonSeviyeId" name="PozisyonSeviyeId" required>
+                <option value="">Pozisyon Seviyesi Seçin</option>
+                @foreach (var seviye in ViewBag.ilanSeviye as List<IlanPozisyonSeviye>)
+                {
+                    <option value="@seviye.SeviyeId">@seviye.PozisyonSeviyeAdi</option>
+                }
+
+                <option value="@Model.PozisyonSeviyeId" selected>@Model.IlanPozisyonSeviye.PozisyonSeviyeAdi</option>
+
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="ilanTanitim" class="form-label">İlan Tanıtım</label>
+            <input type="text" class="form-control" id="ilanTanitim" name="ilanTanitim" value="@Model.IlanTanitim" required>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Ürünü GÜncelle</button>
+    </form>
+</div>

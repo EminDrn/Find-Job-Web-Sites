@@ -19,5 +19,9 @@ namespace IsBulmaProject.Controllers
            .ToList();
             return View(k);
         }
+        public ActionResult Hakkımızda()
+        {
+            return View();
+        }
     }
 }
