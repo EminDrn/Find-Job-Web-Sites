@@ -34,7 +34,8 @@
                 </div>
             </div>
             <hr>
-            <p><strong>İlan Eklenme Tarihi:</strong> @Model.IlanEklenmeTarihi</p>
+            <p><strong>İlan Eklenme Tarihi: </strong> @(Model.IlanEklenmeTarihi is DateTime ? ((DateTime)Model.IlanEklenmeTarihi).ToString("dd.MM.yyyy") : "") </p>
+
             <p><strong>Başvuru Sayısı:</strong> @Model.ilanBasvuruSayisi</p>
             <!-- Diğer ilan detay bilgileri -->
         </div>

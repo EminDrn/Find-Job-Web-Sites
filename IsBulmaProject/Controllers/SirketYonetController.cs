@@ -34,6 +34,7 @@ namespace IsBulmaProject.Controllers
 
         public ActionResult SirketEkle(IsVerenKayit isveren)
         {
+            isveren.RoleID = 3;
             model.IsVerenKayit.AddOrUpdate(isveren);
             model.SaveChanges();
             return RedirectToAction("Sirket");

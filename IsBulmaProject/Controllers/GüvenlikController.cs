@@ -65,6 +65,7 @@ namespace IsBulmaProject.Controllers
         public ActionResult Register(Kullanici k)
         {
             IsBulmaEntities model = new IsBulmaEntities();
+            k.RoleID = 2;
             model.Kullanici.AddOrUpdate(k);
             model.SaveChanges();
             return RedirectToAction("Login");

@@ -61,7 +61,7 @@ namespace IsBulmaProject.Controllers
             Console.WriteLine(ku.KullaniciID);
             model.SaveChanges();
             if (User.IsInRole("2")){
-                return RedirectToAction("KullaniciDetails");
+                return RedirectToAction("KullaniciDetails", new { id = ku.KullaniciID });
 
             }
             else

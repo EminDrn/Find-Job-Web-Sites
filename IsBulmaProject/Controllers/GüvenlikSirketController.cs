@@ -47,6 +47,7 @@ namespace IsBulmaProject.Controllers
         public ActionResult Register(IsVerenKayit k)
         {
             IsBulmaEntities model = new IsBulmaEntities();
+            k.RoleID = 3;
             model.IsVerenKayit.AddOrUpdate(k);
             model.SaveChanges();
             return RedirectToAction("Login");

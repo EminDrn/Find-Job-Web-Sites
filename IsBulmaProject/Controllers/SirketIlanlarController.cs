@@ -18,7 +18,7 @@ namespace IsBulmaProject.Controllers
 
         //[Route("Default-2")]
         [AllowAnonymous]
-        [MyAuthorization(Roles = "3")]
+        
 
         public ActionResult Ilanlar(int? id)
         {
@@ -73,8 +73,8 @@ namespace IsBulmaProject.Controllers
             //model.IlanTanitim.AddOrUpdate(tanitim);
 
             //var tnt = model.IlanTanitim.FirstOrDefault(i => i.ilanOzet == tanitim);
-
-
+            model1.ilanBasvuruSayisi = 0;
+            model1.IlanEklenmeTarihi = DateTime.UtcNow;
             model.Ilan.AddOrUpdate(model1);
             model.SaveChanges();
             return RedirectToAction("Ilanlar");
@@ -103,6 +103,7 @@ namespace IsBulmaProject.Controllers
         public ActionResult IlanGuncelle(int id)
         {
             Ilan ilan = model.Ilan.FirstOrDefault(i => i.ilanId == id);
+            
             List<IsKategori> kategori = model.IsKategori.ToList();
             List<IlanPozisyonSeviye> seviye = model.IlanPozisyonSeviye.ToList();
             ViewBag.CurrentUserId = HttpContext.User.Identity.Name;
@@ -146,11 +147,13 @@ namespace IsBulmaProject.Controllers
         {
             Ilan ilan = model.Ilan.FirstOrDefault(x => x.ilanId == id);
             if (ilan != null)
+
             {
+                
                 model.Ilan.Remove(ilan);
                 model.SaveChanges();
             }
-            //return RedirectToAction("Ilanlar");
+            //return RedirectToAction("Ilanlar");,
         }
        
     }
